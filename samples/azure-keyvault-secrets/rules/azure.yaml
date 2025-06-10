@@ -1,0 +1,69 @@
+- version: 1.0.0
+  date: 07-18-2023
+  alert:
+    fatal:
+      enabled: true
+      type: 
+        - log
+        #- email
+      to:
+        #- yourEmail@mail.com
+    error:
+      enabled: true
+      type: 
+        - log
+        #- email
+        #- sms
+      to: 
+        #- yourEmail@mail.com
+    warning:
+      enabled: true
+      type: 
+        - log
+        #- email
+      to:
+        #- yourEmail@mail.com
+    info:
+      enabled: true
+      type: 
+        - log
+        #- email
+      to: 
+        #- yourEmail@mail.com
+    global:
+      enabled: true
+      type: 
+        - log
+        #- email
+        #- webhook
+        #- sms
+      to: 
+        #- http://127.0.0.1:5000/test
+        #- yourEmail@mail.com
+      conditions:
+        - level: 0
+          min: 1
+        - level: 1
+          min: 1
+        - level: 2
+          min: 1
+        - level: 3
+          min: 1
+  rules:
+    ##################################
+    #            STORAGES            #
+    ##################################
+    #### storage accounts
+    - name: "azure-storage-acc-public-network-access"
+      description: "this rule to ensure that public network access is disabled for storage accounts"
+      applied: true
+      level: 1
+      cloudProvider: azure
+      objectName: StorageManagementClient.storageAccounts
+      conditions:
+        - property: publicNetworkAccess
+          condition: DIFFERENT
+          value: 'Enabled'
+        - property: name
+          condition: EQUAL
+          value: 'storcloudpriceprdpr'
