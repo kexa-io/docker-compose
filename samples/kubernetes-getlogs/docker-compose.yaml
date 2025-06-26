@@ -1,7 +1,7 @@
 services:
   kexa:
-    #build: https://github.com/kexa-io/Kexa.git
-    image: innovtech/kexa
+    build: https://github.com/kexa-io/Kexa.git
+    #image: innovtech/kexa
     container_name: kexa
     env_file:
       - .env
@@ -63,7 +63,7 @@ services:
       - GF_DATABASE_SSL_MODE=disable
     volumes:
       - ./grafana:/var/lib/grafana
-      - ./grafana-dashboards/dashboard.yaml:/etc/grafana/provisioning/dashboards/main.yaml
+      - ./provisioning:/etc/grafana/provisioning
       - ./grafana-dashboards/dashboards:/var/lib/grafana/dashboards
     depends_on:
       bddpostgresql:

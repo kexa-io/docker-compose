@@ -1,0 +1,22 @@
+apiVersion: 1
+
+deleteDatasources:
+  - name: grafana-postgresql-datasource
+    orgId: 1
+
+datasources:
+- name: grafana-postgresql-datasource
+  type: postgres
+  url: bddpostgresql:5432
+  user: admin
+  secureJsonData:
+    password: 'admn45'
+  jsonData:
+    database: kexabdd
+    sslmode: 'disable' # disable/require/verify-ca/verify-full
+    maxOpenConns: 100
+    maxIdleConns: 100
+    maxIdleConnsAuto: true
+    connMaxLifetime: 14400
+    postgresVersion: 903 # 903=9.3, 904=9.4, 905=9.5, 906=9.6, 1000=10
+    timescaledb: false
